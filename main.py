@@ -70,14 +70,14 @@ script_pages =[
 "setting_type.html",
 "global.html"
 ]
-#@app.route("/scripting/")
-def scrpting_main():
-    return redirect (url_for("scripting_main"))
-@app.route("/scripting")
+
+@app.route("/scripting/")
 def scripting_main():
+    print('hi')
     return render_template("scripting/main.html")
 @app.route("/scripting/<page>")
 def scripting_page(page):
+    print('bye')
     for i in script_pages:
         if i[:-5] == page:
             return render_template("scripting/"+i)
