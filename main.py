@@ -84,8 +84,9 @@ def scripting_page(page):
     else: abort(404)
 @app.route("/<page>")########################
 def amongus(page):
-    return redirect(url_for("scripting_page", page = page[:-5]))
-    
+    if page in script_pages:
+        return redirect(url_for("scripting_page", page = page[:-5]))
+    else: abort(404)
 app.register_error_handler(500, dumbservererror)
 app.register_error_handler(404,pageunfound)
 app.run()
