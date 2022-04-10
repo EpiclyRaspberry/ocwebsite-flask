@@ -41,11 +41,51 @@ def license():
 def licence():
     return redirect (url_for("license"))
 #scripting
+script_pages =[
+"gui.html",
+"dimension.html",
+"player.html",
+"server.html",
+"client.html",
+"gfx.html",
+"filesystem.html",
+"client_settings.html",
+"attributes.html",
+"attribute.html",
+"biome.html",
+"block.html",
+"effects.html",
+"font.html",
+"file.html",
+"inventory.html",
+"item.html",
+"module.html",
+"visual_module.html",
+"script_module.html",
+"setting.html",
+"color_setting.html",
+"attributeid.html",
+"effectid.html",
+"flags.html",
+"setting_type.html",
+"global.html"
+]
+#@app.route("/scripting/")
+def scrpting_main():
+    return redirect (url_for("scripting_main"))
 @app.route("/scripting")
 def scripting_main():
     return render_template("scripting/main.html")
-
-
+@app.route("/scripting/<page>")
+def scripting_page(page):
+    for i in script_pages:
+        if i[:-5] == page:
+            return render_template("scripting/"+i)
+    else: abort(404)
+@app.route("/<page>")########################
+def amongus(page):
+    return redirect(url_for("scripting_page", page = page[:-5]))
+    
 app.register_error_handler(500, dumbservererror)
 app.register_error_handler(404,pageunfound)
 app.run()
