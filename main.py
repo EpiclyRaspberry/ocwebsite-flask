@@ -9,7 +9,7 @@ def main():
     return render_template("index.html")
 @app.route("/index.html")
 def redirect_to_main():
-    return redirect(url_for(""))
+    return redirect(url_for("main"))
 @app.route("/favicon.ico")
 def favicon():
     return send_from_directory("templates","favicon.ico")
@@ -37,8 +37,13 @@ def fivehundred():
 @app.route("/license")
 def license():
     return render_template("license.html")
+@app.route("/license.html")
+def licence():
+    return redirect (url_for("license"))
 #scripting
-
+@app.route("/scripting")
+def scripting_main():
+    return render_template("scripting/main.html")
 
 
 app.register_error_handler(500, dumbservererror)
