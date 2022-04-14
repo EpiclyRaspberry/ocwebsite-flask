@@ -78,10 +78,12 @@ def scripting_main():
 @app.route("/scripting/<page>")
 def scripting_page(page):
     print('bye')
-    for i in script_pages:
-        if i[:-5] == page:
-            return render_template("scripting/"+i)
-    else: abort(404)
+    if not page == "style.css":
+        for i in script_pages:
+            if i[:-5] == page:
+                return render_template("scripting/"+i)
+        else: abort(404)
+    else: return send_from_directory("templates","style.css")
 @app.route("/<page>")########################
 def amongus(page):
     if page in script_pages:
